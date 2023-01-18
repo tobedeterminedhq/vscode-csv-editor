@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "ci": "pnpm run lint && pnpm run test && pnpm run build",
+    "lint": "pnpm run -r lint",
+    "test": "pnpm run -r test",
+    "build": "pnpm run -r build"
   },
   "keywords": [],
   "author": "",
