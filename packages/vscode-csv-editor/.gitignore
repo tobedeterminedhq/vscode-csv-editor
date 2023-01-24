@@ -1,1 +1,3 @@
 .vscode-test-web
+src/web/webuiOutput
+!src/web/webuiOutput/.gitkeep

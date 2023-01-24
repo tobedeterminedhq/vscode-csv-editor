@@ -4,7 +4,8 @@
   "scripts": {
     "start": "vite",
     "watch": "tsc && vite build --watch",
-    "build": "tsc && vite build",
+    "build": "rm -rf dist && tsc && vite build",
+    "build:copy" : "pnpm run build && cp -r dist/* ../vscode-csv-editor/src/web/webuiOutput/",
     "preview": "vite preview"
   },
   "dependencies": {
