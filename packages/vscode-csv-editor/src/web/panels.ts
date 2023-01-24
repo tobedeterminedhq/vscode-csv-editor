@@ -64,6 +64,7 @@ export class CatScratchEditorProvider implements CustomTextEditorProvider {
             });
         }
 
+
         // Hook up event handlers so that we can synchronize the webview with the text document.
         //
         // The text document acts as our model, so we have to sync change in the document to our
@@ -93,60 +94,12 @@ export class CatScratchEditorProvider implements CustomTextEditorProvider {
                 case 'delete':
                     this.deleteScratch(document, e.id);
                     return;
+                default:
+                    console.log(e)
             }
         });
 
         updateWebview();
-    }
-
-    /**
-     * Get the static html used for the editor webviews.
-     */
-    // Came from the extension example
-    private getHtmlForWebview(webview: Webview): string {
-        // Local path to script and css for the webview
-        const scriptUri = webview.asWebviewUri(Uri.joinPath(
-            this.context.extensionUri, 'media', 'catScratch.js'));
-
-        const styleResetUri = webview.asWebviewUri(Uri.joinPath(
-            this.context.extensionUri, 'media', 'reset.css'));
-
-        const styleVSCodeUri = webview.asWebviewUri(Uri.joinPath(
-            this.context.extensionUri, 'media', 'vscode.css'));
-
-        const styleMainUri = webview.asWebviewUri(Uri.joinPath(
-            this.context.extensionUri, 'media', 'catScratch.css'));
-
-        // Use a nonce to whitelist which scripts can be run
-        const nonce = getNonce();
-
-        return /* html */`
-			<!DOCTYPE html>
-			<html lang="en">
-			<head>
-				<meta charset="UTF-8">
-				<!--
-				Use a content security policy to only allow loading images from https or from our extension directory,
-				and only allow scripts that have a specific nonce.
-				-->
-				<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src ${webview.cspSource}; style-src ${webview.cspSource}; script-src 'nonce-${nonce}';">
-				<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!--				<link href="${styleResetUri}" rel="stylesheet" />-->
-<!--				<link href="${styleVSCodeUri}" rel="stylesheet" />-->
-<!--				<link href="${styleMainUri}" rel="stylesheet" />-->
-				<title>Cat Scratch</title>
-			</head>
-			<body>
-				<div class="notes">
-					<div class="add-button">
-						<button>Scratch!</button>
-					</div>
-				</div>
-				<div> hello!</div>
-				
-<!--				<script nonce="${nonce}" src="${scriptUri}"></script>-->
-			</body>
-			</html>`;
     }
 
     /**
