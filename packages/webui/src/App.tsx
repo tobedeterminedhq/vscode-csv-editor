@@ -13,9 +13,14 @@ export const App: React.FC = () => {
     useEffect(() => {
         const handleMessage = (event: MessageEvent) => {
             console.log(event)
-            const data = event.data;
-            console.log(data)
-            setCSVFile(data.data)
+            if (event.data.type !== "update") {
+                throw Error("Unknown message type: " + event.data.type)
+            }
+            const data = event.data.text
+            console.log("data coming over", data)
+            const lines = data.split("\n")
+            const rows = lines.map((line) => line.split(","))
+            setCSVFile(rows)
         };
 
         window.addEventListener("message", handleMessage);
@@ -25,7 +30,11 @@ export const App: React.FC = () => {
         };
     }, []);
 
+    if (csvFile.length === 0) {
+        return <div>Loading...</div>
+    }
+
     return <TableComponent data={csvFile} changeData={updateData} />
 }
 
-// TODO Reinstante the tsc check in build steps
+// TODO Reinstate the tsc check in build steps

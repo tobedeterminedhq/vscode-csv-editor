@@ -74,13 +74,6 @@ export class CsvEditorProvider implements CustomTextEditorProvider {
         // Receive message from the webview.
         webviewPanel.webview.onDidReceiveMessage(e => {
             switch (e.type) {
-                case 'add':
-                    this.addNewScratch(document);
-                    return;
-
-                case 'delete':
-                    this.deleteScratch(document, e.id);
-                    return;
                 default:
                     console.log(e)
             }
