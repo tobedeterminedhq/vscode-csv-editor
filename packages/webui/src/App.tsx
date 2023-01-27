@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from "react";
 import {TableComponent} from "./Table";
 import {vscode} from "./utilities/VSCodeAPIWrapper";
+import './App.css';
 
 export const App: React.FC = () => {
-    const [csvFile, setCSVFile] = useState<string>('');
+    const [csvFile, setCSVFile] = useState<string[][]>([]);
 
     function updateData(data: string[][]) {
         vscode.postMessage({command: "update", data});
@@ -30,7 +31,7 @@ export const App: React.FC = () => {
         <div>Hello</div>
         <TableComponent
             data={[["hello", "world"], ["1", "2"], ["3", "4"]]}
-            changeData={(row, column, value) => console.log(row, column, value)}
+            changeData={updateData}
         />
         </>
 }

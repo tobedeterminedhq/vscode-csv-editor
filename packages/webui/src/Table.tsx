@@ -10,7 +10,13 @@ import {
     flexRender,
     RowData, Updater, TableState, CellContext, RowModel, createColumnHelper,
 } from '@tanstack/react-table'
-import {VSCodeButton, VSCodeTextField} from "@vscode/webview-ui-toolkit/react";
+import {
+    VSCodeButton,
+    VSCodeDataGrid,
+    VSCodeDataGridCell,
+    VSCodeDataGridRow,
+    VSCodeTextField,
+} from "@vscode/webview-ui-toolkit/react";
 
 export interface Props {
     data: string[][]
@@ -107,17 +113,20 @@ export const TableComponent: React.FC<Props> = ({data: initialData, changeData})
     })
 
     return (
-        <div className="p-2">
+        <div>
             <VSCodeButton onClick={addColumn}>Add Column</VSCodeButton>
             <VSCodeButton onClick={addRow}>Add Row</VSCodeButton>
-            <div className="h-2"/>
+            <div />
+            <div className="max-w-l">
             <table>
                 <thead>
                 <tr>
-                    {table.getFlatHeaders().map(header => (
-                            <th key={header.id} colSpan={header.colSpan}>
+                    {table.getFlatHeaders().map((header, index) => (
+                            <td
+                                colSpan={header.column.columnDef.colSpan?.toString()}
+                            >
                                 {header.column.columnDef.header}
-                            </th>
+                            </td>
                         )
                     )}
                 </tr>
@@ -141,6 +150,7 @@ export const TableComponent: React.FC<Props> = ({data: initialData, changeData})
                 })}
                 </tbody>
             </table>
+            </div>
         </div>
     )
 }
