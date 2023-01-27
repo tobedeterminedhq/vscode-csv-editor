@@ -26,16 +26,14 @@ import {
  * - Loading scripts and styles in a custom editor.
  * - Synchronizing changes between a text document and a custom editor.
  */
-export class CatScratchEditorProvider implements CustomTextEditorProvider {
+export class CsvEditorProvider implements CustomTextEditorProvider {
 
     public static register(context: ExtensionContext): Disposable {
-        const provider = new CatScratchEditorProvider(context);
-        return window.registerCustomEditorProvider(CatScratchEditorProvider.viewType, provider);
+        const provider = new CsvEditorProvider(context);
+        return window.registerCustomEditorProvider(CsvEditorProvider.viewType, provider);
     }
 
     private static readonly viewType = 'vscode-csv-editor.csvEditor';
-
-    private static readonly scratchCharacters = ['😸', '😹', '😺', '😻', '😼', '😽', '😾', '🙀', '😿', '🐱'];
 
     constructor(
         private readonly context: ExtensionContext
@@ -43,8 +41,6 @@ export class CatScratchEditorProvider implements CustomTextEditorProvider {
 
     /**
      * Called when our custom editor is opened.
-     *
-     *
      */
     public async resolveCustomTextEditor(
         document: TextDocument,
@@ -137,38 +133,6 @@ export class CatScratchEditorProvider implements CustomTextEditorProvider {
     }
 
     /**
-     * Add a new scratch to the current document.
-     */
-    private addNewScratch(document: TextDocument) {
-        const json = this.getDocumentAsJson(document);
-        const character = CatScratchEditorProvider.scratchCharacters[Math.floor(Math.random() * CatScratchEditorProvider.scratchCharacters.length)];
-        json.scratches = [
-            ...(Array.isArray(json.scratches) ? json.scratches : []),
-            {
-                id: getNonce(),
-                text: character,
-                created: Date.now(),
-            }
-        ];
-
-        return this.updateTextDocument(document, json);
-    }
-
-    /**
-     * Delete an existing scratch from a document.
-     */
-    private deleteScratch(document: TextDocument, id: string) {
-        const json = this.getDocumentAsJson(document);
-        if (!Array.isArray(json.scratches)) {
-            return;
-        }
-
-        json.scratches = json.scratches.filter((note: any) => note.id !== id);
-
-        return this.updateTextDocument(document, json);
-    }
-
-    /**
      * Try to get a current document as json text.
      */
     private getDocumentAsJson(document: TextDocument): any {
@@ -190,6 +154,7 @@ export class CatScratchEditorProvider implements CustomTextEditorProvider {
     private updateTextDocument(document: TextDocument, json: any) {
         const edit = new WorkspaceEdit();
 
+        // TODO Replace only what has changed
         // Just replace the entire document every time for this example extension.
         // A more complete extension should compute minimal edits instead.
         edit.replace(
@@ -250,7 +215,7 @@ export class Panel {
                 // Panel view type
                 "tokensPanel",
                 // Panel title
-                "Spectrum 🌈",
+                "CSV Editor 🌈",
                 // The editor column the panel should be displayed in
                 ViewColumn.One,
                 // Extra panel configurations
