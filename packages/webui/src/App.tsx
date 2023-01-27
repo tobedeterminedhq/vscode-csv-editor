@@ -31,6 +31,7 @@ export const App: React.FC = () => {
         <div>Hello World 1</div>
         {csvFile}
         <button onClick={() => dispatchEvent({type: 'updateFromApp', data: '123'})}>Update</button>
+        <div>Hello</div>
         <TableComponent
             data={[["hello", "world"], ["1", "2"], ["3", "4"]]}
             changeData={(row, column, value) => console.log(row, column, value)}
