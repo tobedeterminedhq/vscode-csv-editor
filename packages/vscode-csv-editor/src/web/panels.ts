@@ -15,16 +15,7 @@ import {
 } from "vscode";
 
 /**
- * Provider for cat scratch editors.
- *
- * Cat scratch editors are used for `.cscratch` files, which are just json files.
- * To get started, run this extension and open an empty `.cscratch` file in VS Code.
- *
- * This provider demonstrates:
- *
- * - Setting up the initial webview for a custom editor.
- * - Loading scripts and styles in a custom editor.
- * - Synchronizing changes between a text document and a custom editor.
+ * Provider for csv editors.
  */
 export class CsvEditorProvider implements CustomTextEditorProvider {
 
@@ -115,21 +106,19 @@ export class CsvEditorProvider implements CustomTextEditorProvider {
         const scriptUri = getUri(webview, extensionUri, ["src", "web", "webuiOutput", "assets", "index.js"]);
 
         // Tip: Install the es6-string-html VS Code extension to enable code highlighting below
-        return /*html*/ `
-      <!DOCTYPE html>
-      <html lang="en">
-        <head>
-          <meta charset="UTF-8" />
-          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-          <link rel="stylesheet" type="text/css" href="${stylesUri}">
-          <title>Theme Tokens</title>
-        </head>
-        <body>
-          <div id="root"></div>
-          <script type="module" src="${scriptUri}"></script>
-        </body>
-      </html>
-    `;
+        return /*html*/ `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="${stylesUri}">
+  <title>Theme Tokens</title>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="module" src="${scriptUri}"></script>
+</body>
+</html>`;
     }
 
     /**
