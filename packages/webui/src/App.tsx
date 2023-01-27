@@ -12,9 +12,10 @@ export const App: React.FC = () => {
 
     useEffect(() => {
         const handleMessage = (event: MessageEvent) => {
+            console.log(event)
             const data = event.data;
             console.log(data)
-            setCSVFile(data.text)
+            setCSVFile(data.data)
         };
 
         window.addEventListener("message", handleMessage);
@@ -24,14 +25,7 @@ export const App: React.FC = () => {
         };
     }, []);
 
-    return <>
-        <div>Hello World 1</div>
-        {csvFile}
-        <button onClick={() => dispatchEvent({type: 'updateFromApp', data: '123'})}>Update</button>
-        <div>Hello</div>
-        <TableComponent
-            data={[["hello", "world"], ["1", "2"], ["3", "4"]]}
-            changeData={updateData}
-        />
-        </>
+    return <TableComponent data={csvFile} changeData={updateData} />
 }
+
+// TODO Reinstante the tsc check in build steps
