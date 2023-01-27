@@ -10,16 +10,17 @@ import {
     flexRender,
     RowData, Updater, TableState, CellContext, RowModel, createColumnHelper,
 } from '@tanstack/react-table'
-
+import {VSCodeButton, VSCodeTextField} from "@vscode/webview-ui-toolkit/react";
 
 export interface Props {
     data: string[][]
-    changeData: (row: number, column: number, value: string) => void
+    changeData: (data: string[][]) => void
 }
 
 
 // Give our default column cell renderer editing superpowers!
 const defaultColumn = {
+    // @ts-ignore
     cell: ({ getValue, row: { index }, column: { id }, table }) => {
         const initialValue = getValue()
         // We need to keep and update the state of the cell normally
@@ -36,7 +37,7 @@ const defaultColumn = {
         }, [initialValue])
 
         return (
-            <input
+            <VSCodeTextField
                 value={value as string}
                 onChange={e => setValue(e.target.value)}
                 onBlur={onBlur}
@@ -44,7 +45,6 @@ const defaultColumn = {
         )
     },
 }
-
 
 export const TableComponent: React.FC<Props> = ({data: initialData, changeData}) => {
     const initialHeaders = initialData[0]
@@ -69,9 +69,11 @@ export const TableComponent: React.FC<Props> = ({data: initialData, changeData})
     }
 
 
+    // @ts-ignore
     const columns: Column<unknown>[] = headers.map((column, index) => {
         return {
             id: index.toString(),
+            // @ts-ignore
             accessorFn: (row: RowData) => row[index],
             header: column,
         }
@@ -106,8 +108,8 @@ export const TableComponent: React.FC<Props> = ({data: initialData, changeData})
 
     return (
         <div className="p-2">
-            <button onClick={addColumn}><p>Add Column</p></button>
-            <button onClick={addRow}><p>Add Row</p></button>
+            <VSCodeButton onClick={addColumn}>Add Column</VSCodeButton>
+            <VSCodeButton onClick={addRow}>Add Row</VSCodeButton>
             <div className="h-2"/>
             <table>
                 <thead>

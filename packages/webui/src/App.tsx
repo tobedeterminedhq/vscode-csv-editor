@@ -1,16 +1,12 @@
 import React, {useEffect, useState} from "react";
-import {TableComponent} from "./table";
-
-interface Message {
-    type: 'updateFromApp'
-    data: string
-}
+import {TableComponent} from "./Table";
+import {vscode} from "./utilities/VSCodeAPIWrapper";
 
 export const App: React.FC = () => {
     const [csvFile, setCSVFile] = useState<string>('');
 
-    const dispatchEvent = (message: Message) => {
-        window.dispatchEvent(new MessageEvent('message', message));
+    function updateData(data: string[][]) {
+        vscode.postMessage({command: "update", data});
     }
 
     useEffect(() => {
