@@ -158,7 +158,7 @@ export class CsvEditorProvider implements CustomTextEditorProvider {
   /**
    * Write out the json to a given document.
    */
-  private updateTextDocument(document: TextDocument, json: any) {
+  private updateTextDocument(document: TextDocument, text: string) {
     const edit = new WorkspaceEdit()
 
     // TODO Replace only what has changed
@@ -167,7 +167,7 @@ export class CsvEditorProvider implements CustomTextEditorProvider {
     edit.replace(
       document.uri,
       new Range(0, 0, document.lineCount, 0),
-      JSON.stringify(json, null, 2)
+      text
     )
 
     return workspace.applyEdit(edit)
