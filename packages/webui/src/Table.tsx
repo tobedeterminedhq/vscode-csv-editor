@@ -29,9 +29,9 @@ const defaultColumn = {
     }
 
     // If the initialValue is changed external, sync it up with our state
-    React.useEffect(() => {
-      setValue(initialValue)
-    }, [initialValue])
+    // React.useEffect(() => {
+    //   setValue(initialValue)
+    // }, [initialValue])
 
     return (
       <VSCodeTextField
@@ -47,24 +47,21 @@ export const TableComponent: React.FC<Props> = ({
   data: initialData,
   changeData,
 }) => {
-  const initialHeaders = initialData[0]
-  const rows = initialData.slice(1)
-
-  const [headers, setHeaders] = React.useState(() => initialHeaders)
-  const [data, setData] = React.useState(() => rows)
+  const headers = initialData[0]
+  const data = initialData.slice(1)
 
   console.log('headers', headers)
   console.log('data', data)
 
   const addColumn = () => {
-    const newColumn = `Column ${headers.length}`
-    setHeaders((old) => [...old, newColumn])
-    setData((old) => old.map((row) => [...row, '']))
+    const newHeaders = [...headers, `Column ${headers.length}`]
+    const newRows = data.map((row) => [...row, ''])
+    changeData([newHeaders, ...newRows])
   }
 
   const addRow = () => {
     const newRow = headers.map(() => '')
-    setData((old) => [...old, newRow])
+    changeData([headers, ...data, newRow])
   }
 
   // @ts-ignore

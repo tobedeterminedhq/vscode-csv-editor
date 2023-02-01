@@ -77,16 +77,15 @@ export class CsvEditorProvider implements CustomTextEditorProvider {
 
     // Receive message from the webview.
     webviewPanel.webview.onDidReceiveMessage((e) => {
-      switch (e.type) {
-        case 'add':
-          console.log('received add', e)
-          return
-
-        case 'delete':
-          console.log('received add', e)
+      console.log('received message in extension', e)
+      switch (e.command) {
+        case 'updateData':
+          console.log('received updateData with data', e.message.data)
+          this.updateTextDocument(document, e.message.data)
           return
         default:
-          console.log(e)
+          console.log('received message in extension', e)
+          return
       }
     })
 
@@ -164,11 +163,7 @@ export class CsvEditorProvider implements CustomTextEditorProvider {
     // TODO Replace only what has changed
     // Just replace the entire document every time for this example extension.
     // A more complete extension should compute minimal edits instead.
-    edit.replace(
-      document.uri,
-      new Range(0, 0, document.lineCount, 0),
-      text
-    )
+    edit.replace(document.uri, new Range(0, 0, document.lineCount, 0), text)
 
     return workspace.applyEdit(edit)
   }
