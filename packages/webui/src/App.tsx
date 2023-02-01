@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { TableComponent } from './Table'
-import {vscode} from './utilities/VSCodeAPIWrapper'
+import { vscode } from './utilities/VSCodeAPIWrapper'
 import './App.css'
 
 export const App: React.FC = () => {
-
   // TODO Add a loading state
   const [csvFile, setCSVFile] = useState<'loading' | string[][]>('loading')
 
@@ -13,7 +12,7 @@ export const App: React.FC = () => {
     console.log('updating data with data', data)
     const message = {
       command: 'updateData',
-      data: data.map(row => row.join(',')).join('\n'),
+      data: data.map((row) => row.join(',')).join('\n'),
     }
     console.log('updating data with data and message', data, message)
     vscode.postMessage({ command: 'updateData', message })
@@ -32,7 +31,7 @@ export const App: React.FC = () => {
       if (typeof data !== 'string') {
         throw new Error('invalid message data, expect string')
       }
-      const newData = data.split('\n').map(row => row.split(','))
+      const newData = data.split('\n').map((row) => row.split(','))
 
       console.log(data)
       // setCSVFile(data.data)
