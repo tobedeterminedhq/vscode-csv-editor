@@ -6,7 +6,7 @@
     "watch": "tsc && vite build --watch",
     "dev": "vite build --watch",
     "build": "rm -rf dist && vite build",
-    "build:copy": "pnpm run build && cp -r dist/* ../vscode-csv-editor/src/web/webuiOutput/",
+    "build:copy": "pnpm run build && mkdir -p ../vscode-csv-editor/src/web/webuiOutput/ && cp -r dist/* ../vscode-csv-editor/src/web/webuiOutput/",
     "preview": "vite preview"
   },
   "dependencies": {
