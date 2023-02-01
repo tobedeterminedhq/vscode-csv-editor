@@ -1,0 +1,13 @@
+packages/*/build
+packages/*/coverage
+packages/*/.next
+packages/*/dist
+packages/*/storybook-static
+packages/website/.contentlayer/
+packages/vscode-csv-editor/.vscode-test-web
+js/packages/proto/src
+proto/gen
+docs
+sample_project
+pnpm-lock.yaml
+.pnpm-store

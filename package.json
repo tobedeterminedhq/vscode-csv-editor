@@ -4,11 +4,16 @@
   "description": "",
   "scripts": {
     "ci": "pnpm run lint && pnpm run test && pnpm run build",
-    "lint": "pnpm run -r lint",
     "test": "pnpm run -r test",
-    "build": "pnpm run -r build"
+    "build": "pnpm run -r build",
+    "lint": "prettier --check . && pnpm -r run lint",
+    "fmt": "prettier -w ."
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "prettier": "^2.8.3",
+    "prettier-plugin-tailwindcss": "^0.2.2"
+  }
 }
