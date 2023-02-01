@@ -52,7 +52,6 @@ export const TableComponent: React.FC<Props> = ({
 
   const [headers, setHeaders] = React.useState(() => initialHeaders)
   const [data, setData] = React.useState(() => rows)
-  const rerender = React.useReducer(() => ({}), {})[1]
 
   console.log('headers', headers)
   console.log('data', data)

@@ -2,9 +2,8 @@
   "name": "webui",
   "version": "0.0.1",
   "scripts": {
-    "start": "vite",
-    "watch": "tsc && vite build --watch",
-    "dev": "vite build --watch",
+    "dev": "vite",
+    "watch": "vite build --watch",
     "build": "rm -rf dist && vite build",
     "build:copy": "pnpm run build && mkdir -p ../vscode-csv-editor/src/web/webuiOutput/ && cp -r dist/* ../vscode-csv-editor/src/web/webuiOutput/",
     "preview": "vite preview"
