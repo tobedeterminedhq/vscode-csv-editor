@@ -75,11 +75,11 @@ export class CsvEditorProvider implements CustomTextEditorProvider {
         webviewPanel.webview.onDidReceiveMessage(e => {
             switch (e.type) {
                 case 'add':
-                    this.addNewScratch(document);
+                    console.log("received add", e)
                     return;
 
                 case 'delete':
-                    this.deleteScratch(document, e.id);
+                    console.log("received add", e)
                     return;
                 default:
                     console.log(e)

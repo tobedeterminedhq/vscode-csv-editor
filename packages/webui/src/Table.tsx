@@ -1,20 +1,15 @@
 import React from 'react'
 import {
     Column,
-    Table,
-    ColumnDef,
     useReactTable,
     getCoreRowModel,
     getFilteredRowModel,
     getPaginationRowModel,
     flexRender,
-    RowData, Updater, TableState, CellContext, RowModel, createColumnHelper,
+    RowData,
 } from '@tanstack/react-table'
 import {
     VSCodeButton,
-    VSCodeDataGrid,
-    VSCodeDataGridCell,
-    VSCodeDataGridRow,
     VSCodeTextField,
 } from "@vscode/webview-ui-toolkit/react";
 
@@ -58,7 +53,7 @@ export const TableComponent: React.FC<Props> = ({data: initialData, changeData})
 
     const [headers, setHeaders] = React.useState(() => initialHeaders)
     const [data, setData] = React.useState(() => rows)
-    // const rerender = React.useReducer(() => ({}), {})[1]
+    const rerender = React.useReducer(() => ({}), {})[1]
 
     console.log("headers", headers)
     console.log("data", data)
