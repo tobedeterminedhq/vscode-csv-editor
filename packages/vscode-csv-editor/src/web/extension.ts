@@ -1,13 +1,13 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
-import * as vscode from 'vscode';
-import {ExtensionContext} from "vscode";
-import {CsvEditorProvider} from "./panels";
+import * as vscode from 'vscode'
+import { ExtensionContext } from 'vscode'
+import { CsvEditorProvider } from './panels'
 
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
 export function activate(context: ExtensionContext) {
-	context.subscriptions.push(CsvEditorProvider.register(context));
+  context.subscriptions.push(CsvEditorProvider.register(context))
 }
 
 // This method is called when your extension is deactivated
