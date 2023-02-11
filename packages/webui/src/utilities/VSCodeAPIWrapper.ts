@@ -1,4 +1,4 @@
-import { WebviewApi } from "vscode-webview";
+import type { WebviewApi } from "vscode-webview";
 
 /**
  * A utility wrapper around the acquireVsCodeApi() function, which enables
@@ -11,7 +11,7 @@ import { WebviewApi } from "vscode-webview";
  */
 class VSCodeAPIWrapper {
   private readonly vsCodeApi: WebviewApi<unknown> | undefined;
-
+  
   constructor() {
     // Check if the acquireVsCodeApi function exists in the current development
     // context (i.e. VS Code development window or web browser)
