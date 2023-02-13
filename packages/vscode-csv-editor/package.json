@@ -4,7 +4,7 @@
   "description": "Tool to allow csv editing.",
   "version": "0.0.1",
   "engines": {
-    "vscode": "^1.74.0"
+    "vscode": "^1.75.0"
   },
   "categories": [
     "Other"
@@ -48,13 +48,13 @@
   },
   "devDependencies": {
     "@types/mocha": "^10.0.1",
-    "@types/vscode": "^1.74.0",
+    "@types/vscode": "^1.75.0",
     "@types/webpack-env": "^1.18.0",
-    "@typescript-eslint/eslint-plugin": "^5.50.0",
-    "@typescript-eslint/parser": "^5.50.0",
+    "@typescript-eslint/eslint-plugin": "^5.51.0",
+    "@typescript-eslint/parser": "^5.51.0",
     "@vscode/test-web": "^0.0.34",
     "assert": "^2.0.0",
-    "eslint": "^8.33.0",
+    "eslint": "^8.34.0",
     "mocha": "^10.2.0",
     "process": "^0.11.10",
     "ts-loader": "^9.4.2",
